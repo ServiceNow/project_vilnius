@@ -1,0 +1,7 @@
+matplotlib==3.2.2
+networkx==2.6.3
+numpy==1.22.2
+pandas==1.1.4
+pycorpora==0.1.2 --install-option="--corpora-zip-url=https://github.com/dariusk/corpora/archive/master.zip"
+seaborn==0.10.1
+
