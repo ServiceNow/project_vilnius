@@ -1,2 +1,3 @@
-# project_vilnius
-Project Vilnius - A dataset to assess causal reasoning in large language models
+# Project Vilnius
+
+This project aims to assess the reasoning capabilities of large-language models.
