@@ -32,7 +32,6 @@ G = generate_dag(n=6, p=0.4)
 # A good randomly generated graph
 # np.random.seed(3)
 # G = generate_dag(n=10, p=0.4)
-# TODO: don't iterate over all permutations as I currently do since there are too many
 
 f = plot_graph(G)
 f.savefig(f"prompt_selection_{time()}.png")
@@ -46,12 +45,13 @@ trial_accuracies = []
 missed_answers = []
 question_answers = []
 
+max_permutations = 10
 for real_words in [False]:
     for shot in [-1]:  # Convention: -1 means zero shot with no CoT prompting
         for prompt_type in ["v6", "v7", "v8"]:
             for fact_type in ["v1", "v2", "v3"]:
                 for trial, permutation in enumerate(
-                    set(permutations(range(len(G.nodes()))))
+                    list(set(permutations(range(len(G.nodes())))))[: max_permutations]
                 ):
                     G = assign_names_to_nodes(G, use_real_words=real_words)
 
@@ -103,7 +103,7 @@ for real_words in [False]:
                                 prompt_header + question_prompt, deterministic=True
                             )
                             print(
-                                "Type:", q["type"], "\n", question_prompt, model_answer
+                                "Type:", q["type"], "\n", question_prompt, model_answer, "\nTrue answer:", q["answer"]
                             )
 
                         is_correct = check_answer_binary(q["answer"], model_answer)
