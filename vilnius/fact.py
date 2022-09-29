@@ -69,10 +69,16 @@ def generate_facts(
                 if True:
                     # Fact mode: one per causal edge
                     for c in children:
-                        fact_id = _log_fact(
-                            f"manipulating the value of {node} causes a change in the value of {c}"
-                        )  # Symbolic fact
-                        #                         fact_id = _log_fact(f"cause({node}; {c})")  # Symbolic fact
+                        if fact_type == "v1":
+                            fact_id = _log_fact(
+                                f"manipulating the value of {node} causes a change in the value of {c}"
+                            )
+                        elif fact_type == "v2":
+                            fact_id = _log_fact(
+                                f"manipulating the value of {node} causes a change in the value of {c}, so {node} is a cause of {c} and {c} is an effect of {node}"
+                            )
+                        elif fact_type == "v3":
+                            fact_id = _log_fact(f"{node} is a cause of {c}")
                         fact_by_edge[(node, c)] = fact_id
 
                 else:

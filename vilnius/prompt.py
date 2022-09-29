@@ -68,8 +68,19 @@ def generate_templated_prompt_header(G, facts, prompt_type="v1"):
         )
     elif prompt_type == "v6":
         prompt = (
+            f"Definition: If manipulating the value of some quantity X causes the value of another quantity Y to change, we say that X is a cause of Y and that Y is an effect of X. Importantly, we assume that, if X is a cause of Y, then Y cannot be a cause of X (asymmetry of causation).\n\n"
+            + f"Context: You are given facts about the causal relationships that are known to exist between "
+            + f"{len(G.nodes())} quantities: {', '.join(G.nodes())}.\n\n"
+        )
+    elif prompt_type == "v7":
+        prompt = (
             f"Definition: If manipulating the value of some quantity X causes the value of another quantity Y to change, we say that X is a cause of Y and that Y is an effect of X. Importantly, we assume that, if X is a cause of Y, then Y cannot be a cause of X (asymmetry of causation). Note that causation may propagate over chains of causal relationships.\n\n"
             + f"Context: You are given facts about the causal relationships that are known to exist between "
+            + f"{len(G.nodes())} quantities: {', '.join(G.nodes())}.\n\n"
+        )
+    elif prompt_type == "v8":
+        prompt = (
+            f"Context: You are given facts about the causal relationships that are known to exist between "
             + f"{len(G.nodes())} quantities: {', '.join(G.nodes())}.\n\n"
         )
     else:

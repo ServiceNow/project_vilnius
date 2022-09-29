@@ -11,7 +11,8 @@ from vilnius.question import few_shot_balanced_types, generate_all_pair_question
 
 G = generate_dag(n=5, p=0.4)
 G = assign_names_to_nodes(G, use_real_words=False)
-plot_graph(G)
+f = plot_graph(G)
+f.savefig("example.png")
 
 facts = generate_facts(G, fact_type="v1")
 

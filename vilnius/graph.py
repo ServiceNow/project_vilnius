@@ -51,7 +51,7 @@ def plot_graph(G):
     """
     plt.clf()
     nx.draw(G, with_labels=True, node_color="red", node_size=1000)
-    plt.show()
+    return plt.gcf()
 
 
 def save_graph(G, filename):
